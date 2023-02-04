@@ -3,9 +3,19 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
 
+  SORTING = {
+    'A-z' => { make: :asc },
+    'Z-a' => { make: :desc }
+  }.freeze
   # GET /cars or /cars.json
   def index
     @cars = Car.all
+    @cars = @cars.where(make: params[:make]) if params[:make].present?
+    @cars = @cars.where(model: params[:model]) if params[:model].present?
+    sort_price
+    sort_odometer
+    sort_year
+    @cars = @cars.order(**SORTING.fetch(params[:sort_by])) if params[:sort_by].present?
   end
 
   # GET /cars/1 or /cars/1.json
@@ -67,5 +77,37 @@ class CarsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def car_params
     params.fetch(:car, {})
+  end
+
+  private
+
+  def sort_year
+    if params[:year_from].present? && params[:year_to].present?
+      @cars = @cars.where(year: params[:year_from]..params[:year_to])
+    elsif params[:year_from].present?
+      @cars = @cars.where('year >= :year_from', year_from: params[:year_from])
+    elsif params[:year_to].present?
+      @cars = @cars.where('year <= :year_to', year_to: params[:year_to])
+    end
+  end
+
+  def sort_price
+    if params[:price_from].present? && params[:price_to].present?
+      @cars = @cars.where(price: params[:price_from]..params[:price_to])
+    elsif params[:price_from].present?
+      @cars = @cars.where('price >= :price_from', price_from: params[:price_from])
+    elsif params[:price_to].present?
+      @cars = @cars.where('price <= :price_to', price_to: params[:price_to])
+    end
+  end
+
+  def sort_odometer
+    if params[:odometer_from].present? && params[:odometer_to].present?
+      @cars = @cars.where(odometer: params[:odometer_from]..params[:odometer_to])
+    elsif params[:odometer_from].present?
+      @cars = @cars.where('odometer >= :odometer_from', odometer_from: params[:odometer_from])
+    elsif params[:odometer_to].present?
+      @cars = @cars.where('odometer <= :odometer_to', odometer_to: params[:odometer_to])
+    end
   end
 end
