@@ -1,9 +1,10 @@
 <div id="<%= dom_id car %>">
-  <%= car.make %>
-  <%= car.model %>
-  <%= car.year %>
-  <%= car.odometer.to_i %>
-  <%= car.price.to_i %>
-  <%= car.description %>
-  <%= car.added_on %>
+  <p>Car id: <%= car.id %></p>
+  <p>Make: <%= car.make %></p>
+  <p>Model: <%= car.model %></p>
+  <p>Year: <%= car.year %></p>
+  <p>Odometer: <%= car.odometer.to_i %></p>
+  <p>Price: <%= car.price.to_i %></p>
+  <p>Description: <%= car.description %></p>
+  <p>Date added: <%= car.added_on %></p>
 </div>
