@@ -3,21 +3,17 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
 
-  SORTING = {
-    'A-z' => { make: :asc },
-    'Z-a' => { make: :desc }
-  }.freeze
   # GET /cars or /cars.json
   def index
     @cars = Car.all
-    @cars = @cars.where(make: params[:make]) if params[:make].present?
-    @cars = @cars.where(model: params[:model]) if params[:model].present?
+    @cars = sort_cars if sorting_params_present?
+    filter_by_make_model
     sort_price
     sort_odometer
     sort_year
-    @cars = @cars.order(**SORTING.fetch(params[:sort_by])) if params[:sort_by].present?
   end
-  def sort; end
+
+  def search; end
 
   # GET /cars/1 or /cars/1.json
   def show; end
@@ -80,8 +76,7 @@ class CarsController < ApplicationController
     params.fetch(:car, {})
   end
 
-  private
-
+  # rubocop:disable all
   def sort_year
     if params[:year_from].present? && params[:year_to].present?
       @cars = @cars.where(year: params[:year_from]..params[:year_to])
@@ -110,5 +105,28 @@ class CarsController < ApplicationController
     elsif params[:odometer_to].present?
       @cars = @cars.where('odometer <= :odometer_to', odometer_to: params[:odometer_to])
     end
+  end
+
+  def sort_cars
+    case params[:sort_by]
+    when 'date'
+      @cars.sort do |a, b|
+        params[:sort_order] == 'asc' ? (a.added_on <=> b.added_on) : (b.added_on <=> a.added_on)
+      end
+    when 'price'
+      @cars.sort do |a, b|
+        params[:sort_order] == 'asc' ? (a.price <=> b.price) : (b.price <=> a.price)
+      end
+    end
+  end
+
+  # rubocop:enable all
+  def filter_by_make_model
+    @cars = @cars.where(make: params[:make]) if params[:make].present?
+    @cars = @cars.where(model: params[:model]) if params[:model].present?
+  end
+
+  def sorting_params_present?
+    params[:sort_by].present? && params[:sort_order].present?
   end
 end
