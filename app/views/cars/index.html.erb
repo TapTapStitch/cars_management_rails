@@ -3,14 +3,12 @@
 <h3>Cars</h3>
 <%= "There are " + @cars.length.to_s + " cars found." %>
 <p><%= link_to "Back to Home page", root_path %></p>
+<p><%= link_to "Search", cars_search_path%></p>
 <div>
-  <%= form_with url: cars_path, method: :get, data: { turbo: false }, class: 'cars_form' do |f| %>
-    <%= f.label "Sort by:" %>
-    <%= f.select :sort_by, ['price', 'date'], selected: params[:sort_by] %>
-    <%= f.label "Sort order:" %>
-    <%= f.select :sort_order, ['asc', 'desc'], selected: params[:sort_order] %>
-    <%= f.submit 'Sort' %>
-  <% end %>
+  <p><%= link_to "Sort by Date Added (ascending)", cars_path(sort: "date_added_asc") %></p>
+  <p><%= link_to "Sort by Date Added (descending)", cars_path(sort: "date_added_desc") %></p>
+  <p><%= link_to "Sort by Price (ascending)", cars_path(sort: "price_asc") %></p>
+  <p><%= link_to "Sort by Price (descending)", cars_path(sort: "price_desc") %></p>
 </div>
 <div id="cars">
   <% @cars.each do |car| %>
@@ -20,5 +18,3 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New car", new_car_path %>

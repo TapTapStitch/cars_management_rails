@@ -6,11 +6,11 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     @cars = Car.all
-    @cars = sort_cars if sorting_params_present?
     filter_by_make_model
     sort_price
     sort_odometer
     sort_year
+    @cars = direction
   end
 
   def search; end
@@ -77,6 +77,20 @@ class CarsController < ApplicationController
   end
 
   # rubocop:disable all
+  def direction
+    case params[:sort]
+    when 'date_added_desc'
+      @cars.order(added_on: :desc)
+    when 'date_added_asc'
+      @cars.order(added_on: :asc)
+    when 'price_desc'
+      @cars.order(price: :desc)
+    when 'price_asc'
+      @cars.order(price: :asc)
+    else
+      @cars
+    end
+  end
   def sort_year
     if params[:year_from].present? && params[:year_to].present?
       @cars = @cars.where(year: params[:year_from]..params[:year_to])
@@ -107,26 +121,9 @@ class CarsController < ApplicationController
     end
   end
 
-  def sort_cars
-    case params[:sort_by]
-    when 'date'
-      @cars.sort do |a, b|
-        params[:sort_order] == 'asc' ? (a.added_on <=> b.added_on) : (b.added_on <=> a.added_on)
-      end
-    when 'price'
-      @cars.sort do |a, b|
-        params[:sort_order] == 'asc' ? (a.price <=> b.price) : (b.price <=> a.price)
-      end
-    end
-  end
-
   # rubocop:enable all
   def filter_by_make_model
     @cars = @cars.where(make: params[:make]) if params[:make].present?
     @cars = @cars.where(model: params[:model]) if params[:model].present?
-  end
-
-  def sorting_params_present?
-    params[:sort_by].present? && params[:sort_order].present?
   end
 end

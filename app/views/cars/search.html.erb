@@ -1,3 +1,4 @@
+<h3>Search page</h3>
 <div>
   <%= form_with url: cars_path, method: :get, data: { turbo: false }, class: 'cars_form' do |f| %>
     <%= f.label :make, "Search by name" %>
@@ -22,3 +23,4 @@
     <%= f.submit 'Search' %>
   <% end %>
 </div>
+<p><%= link_to "Back to Home page", root_path %></p>
