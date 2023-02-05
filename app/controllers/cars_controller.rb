@@ -17,6 +17,7 @@ class CarsController < ApplicationController
     sort_year
     @cars = @cars.order(**SORTING.fetch(params[:sort_by])) if params[:sort_by].present?
   end
+  def sort; end
 
   # GET /cars/1 or /cars/1.json
   def show; end

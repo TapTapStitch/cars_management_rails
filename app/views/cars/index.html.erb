@@ -2,32 +2,6 @@
 
 <h1>Cars</h1>
 
-<div>
-  <%= form_with url: cars_path, method: :get, data: { turbo: false }, class: 'cars_form' do |f| %>
-    <%= f.label :make, "Search by name" %>
-    <%= f.text_field :make, value: params[:make] %>
-    <%= f.label :model, "Search by model" %>
-    <%= f.text_field :model, value: params[:model] %>
-    <%= f.label :years, "Filter by years" %>
-    <div>
-      <%= f.number_field :year_from, value: params[:year_from] %>
-      <%= f.number_field :year_to, value: params[:year_to] %>
-    </div>
-    <%= f.label :price, "Filter by price" %>
-    <div>
-      <%= f.number_field :price_from, value: params[:price_from] %>
-      <%= f.number_field :price_to, value: params[:price_to] %>
-    </div>
-    <%= f.label :years, "Filter by odometer" %>
-    <div>
-      <%= f.number_field :odometer_from, value: params[:odometer_from] %>
-      <%= f.number_field :odometer_to, value: params[:odometer_to] %>
-    </div>
-    <%= f.select :sort_by, ['A-z', 'Z-a'], selected: params[:sort_by] %>
-    <%= f.submit 'Search' %>
-  <% end %>
-</div>
-
 <div id="cars">
   <% @cars.each do |car| %>
     <%= render car %>
