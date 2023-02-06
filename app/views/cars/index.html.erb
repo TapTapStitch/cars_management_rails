@@ -4,12 +4,27 @@
 <%= "There are " + @cars.length.to_s + " cars found." %>
 <p><%= link_to "Back to Home page", root_path %></p>
 <p><%= link_to "Search", cars_search_path %></p>
-
+<%
+  def sort_link(sort_order, title)
+    hash = {
+      sort: sort_order,
+      make: params[:make],
+      model: params[:model],
+      year_from: params[:year_from],
+      year_to: params[:year_to],
+      price_from: params[:price_from],
+      price_to: params[:price_to],
+      odometer_from: params[:odometer_from],
+      odometer_to: params[:odometer_to]
+    }
+    link_to title, cars_path(hash)
+  end
+%>
 <div>
-  <p><%= link_to "Sort by Date Added (ascending)", cars_path(sort: "date_added_asc", make: params[:make], model: params[:model], year_from: params[:year_from], year_to: params[:year_to], price_from: params[:price_from], price_to: params[:price_to], odometer_from: params[:odometer_from], odometer_to: params[:odometer_to]) %></p>
-  <p><%= link_to "Sort by Date Added (descending)", cars_path(sort: "date_added_desc", make: params[:make], model: params[:model], year_from: params[:year_from], year_to: params[:year_to], price_from: params[:price_from], price_to: params[:price_to], odometer_from: params[:odometer_from], odometer_to: params[:odometer_to]) %></p>
-  <p><%= link_to "Sort by Price (ascending)", cars_path(sort: "price_asc", make: params[:make], model: params[:model], year_from: params[:year_from], year_to: params[:year_to], price_from: params[:price_from], price_to: params[:price_to], odometer_from: params[:odometer_from], odometer_to: params[:odometer_to]) %></p>
-  <p><%= link_to "Sort by Price (descending)", cars_path(sort: "price_desc", make: params[:make], model: params[:model], year_from: params[:year_from], year_to: params[:year_to], price_from: params[:price_from], price_to: params[:price_to], odometer_from: params[:odometer_from], odometer_to: params[:odometer_to]) %></p>
+  <p><%= sort_link("date_added_asc", "Sort by Date Added (ascending)") %></p>
+  <p><%= sort_link("date_added_desc", "Sort by Date Added (descending)") %></p>
+  <p><%= sort_link("price_asc", "Sort by Price (ascending)") %></p>
+  <p><%= sort_link("price_desc", "Sort by Price (descending)") %></p>
 </div>
 <div id="cars">
   <% @cars.each do |car| %>
