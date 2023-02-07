@@ -12,6 +12,8 @@ class CarsController < ApplicationController
     sort_odometer
     sort_year
     @cars = direction
+    @number_of_cars = @cars.length
+    @cars = @cars.paginate(:page => params[:page], :per_page => 5)
   end
 
   def search; end

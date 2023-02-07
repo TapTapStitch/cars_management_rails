@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h3>Cars</h3>
-<%= "There are " + @cars.length.to_s + " cars found." %>
+<%= "There are " + @number_of_cars.to_s + " cars found." %>
 <p><%= link_to "Back to Home page", root_path %></p>
 <p><%= link_to "Search", cars_search_path %></p>
 <%
@@ -15,7 +15,8 @@
       price_from: params[:price_from],
       price_to: params[:price_to],
       odometer_from: params[:odometer_from],
-      odometer_to: params[:odometer_to]
+      odometer_to: params[:odometer_to],
+      page: params[:page]
     }
     link_to title, cars_path(hash)
   end
@@ -34,4 +35,5 @@
     </p>
   <% end %>
 </div>
-<div><%=link_to "Add new car", new_car_path %></div>
+<%= will_paginate @cars %>
+<div><%= link_to "Add new car", new_car_path %></div>
