@@ -10,8 +10,18 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <p>Make:</p>
+  <%= form.text_field :make %>
+  <p>Model:</p>
+  <%=form.text_field :model %>
+  <p>Year:</p>
+  <%= form.number_field :year %>
+  <p>Odometer:</p>
+  <%= form.number_field :odometer %>
+  <p>Price:</p>
+  <%= form.number_field :price %>
+  <p>Description:</p>
+  <%= form.text_area :description %>
+  <%= form.hidden_field :added_on, value: Date.current %>
+  <p><%= form.submit "Save form" %></p>
 <% end %>

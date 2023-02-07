@@ -2,6 +2,7 @@
 
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
+  http_basic_authenticate_with name: 'admin', password: 'adminpassword', except: %i[index show search]
 
   # GET /cars or /cars.json
   def index
@@ -73,7 +74,7 @@ class CarsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def car_params
-    params.fetch(:car, {})
+    params.require(:car).permit(:make, :model, :year, :odometer, :price, :description, :added_on)
   end
 
   # rubocop:disable all
@@ -91,6 +92,7 @@ class CarsController < ApplicationController
       @cars
     end
   end
+
   def sort_year
     if params[:year_from].present? && params[:year_to].present?
       @cars = @cars.where(year: params[:year_from]..params[:year_to])
