@@ -3,7 +3,6 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
   http_basic_authenticate_with name: 'admin', password: 'adminpassword', except: %i[index show search]
-
   # GET /cars or /cars.json
   def index
     @cars = Car.all
