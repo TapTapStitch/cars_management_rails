@@ -6,5 +6,5 @@
   <p>Odometer: <%= car.odometer.to_i %></p>
   <p>Price: <%= car.price.to_i %></p>
   <p>Description: <%= car.description %></p>
-  <p>Date added: <%= car.added_on %></p>
+  <p>Date added: <%= car.created_at.strftime("%Y-%m-%d") %></p>
 </div>

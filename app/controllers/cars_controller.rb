@@ -75,16 +75,16 @@ class CarsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def car_params
-    params.require(:car).permit(:make, :model, :year, :odometer, :price, :description, :added_on)
+    params.require(:car).permit(:make, :model, :year, :odometer, :price, :description)
   end
 
   # rubocop:disable all
   def direction
     case params[:sort]
     when 'date_added_desc'
-      @cars.order(added_on: :desc)
+      @cars.order(created_at: :desc)
     when 'date_added_asc'
-      @cars.order(added_on: :asc)
+      @cars.order(created_at: :asc)
     when 'price_desc'
       @cars.order(price: :desc)
     when 'price_asc'
