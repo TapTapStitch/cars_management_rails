@@ -2,7 +2,10 @@
 
 Rails.application.routes.draw do
   root 'pages#index'
-  resources :cars
   get 'help' => 'pages#help'
-  get 'cars_search' => 'cars#search'
+  resources :cars do
+    collection do
+      get :search
+    end
+  end
 end

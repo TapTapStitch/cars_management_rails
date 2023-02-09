@@ -3,7 +3,7 @@
 <h3>Cars</h3>
 <%= "There are " + @number_of_cars.to_s + " cars found." %>
 <p><%= link_to "Back to Home page", root_path %></p>
-<p><%= link_to "Search", cars_search_path %></p>
+<p><%= link_to "Search", search_cars_path  %></p>
 <%
   def sort_link(sort_order, title)
     hash = {
