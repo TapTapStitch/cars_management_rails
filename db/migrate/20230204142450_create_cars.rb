@@ -6,10 +6,9 @@ class CreateCars < ActiveRecord::Migration[7.0]
       t.string :make, null: false
       t.string :model, null: false
       t.integer :year, null: false
-      t.float :odometer, null: false
-      t.float :price, null: false
+      t.integer :odometer, null: false
+      t.integer :price, null: false
       t.text :description
-      t.date :added_on, null: false
       t.timestamps
     end
   end

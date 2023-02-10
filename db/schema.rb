@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_09_185234) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_10_130446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,9 +18,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_185234) do
     t.string "make", null: false
     t.string "model", null: false
     t.integer "year", null: false
-    t.float "odometer", null: false
-    t.float "price", null: false
+    t.integer "odometer", null: false
+    t.integer "price", null: false
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "make"
+    t.string "model"
+    t.integer "year_from"
+    t.integer "year_to"
+    t.integer "odometer_from"
+    t.integer "odometer_to"
+    t.integer "price_from"
+    t.integer "price_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

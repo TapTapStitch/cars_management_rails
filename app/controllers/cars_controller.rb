@@ -3,32 +3,28 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
   http_basic_authenticate_with name: 'admin', password: 'adminpassword', except: %i[index show search]
-  # GET /cars or /cars.json
+
   def index
+    @request = Request.new(search_params)
+    @number_of_cars = 'no'
+    return unless @request.valid?
+
     @cars = Car.all
-    filter_by_make_model
-    sort_price
-    sort_odometer
-    sort_year
-    @cars = direction
-    @number_of_cars = @cars.length
+    sort_and_direction
+    @number_of_cars = @cars.length.to_s
     @cars = @cars.paginate(page: params[:page], per_page: 5)
   end
 
   def search; end
 
-  # GET /cars/1 or /cars/1.json
   def show; end
 
-  # GET /cars/new
   def new
     @car = Car.new
   end
 
-  # GET /cars/1/edit
   def edit; end
 
-  # POST /cars or /cars.json
   def create
     @car = Car.new(car_params)
 
@@ -41,7 +37,6 @@ class CarsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /cars/1 or /cars/1.json
   def update
     respond_to do |format|
       if @car.update(car_params)
@@ -52,7 +47,6 @@ class CarsController < ApplicationController
     end
   end
 
-  # DELETE /cars/1 or /cars/1.json
   def destroy
     @car.destroy
 
@@ -63,65 +57,53 @@ class CarsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_car
     @car = Car.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
+  def sort_and_direction
+    @cars = @cars.where(make: params[:make]) if params[:make].present?
+    @cars = @cars.where(model: params[:model]) if params[:model].present?
+    sort_cars(:year, 'year')
+    sort_cars(:price, 'price')
+    sort_cars(:odometer, 'odometer')
+    @cars = direction
+  end
+
   def car_params
     params.require(:car).permit(:make, :model, :year, :odometer, :price, :description)
   end
 
-  # rubocop:disable all
+  def search_params
+    { make: params[:make], model: params[:model], price_from: params[:price_from], price_to: params[:price_to],
+      year_from: params[:year_from], year_to: params[:year_to], odometer_from: params[:odometer_from],
+      odometer_to: params[:odometer_to] }
+  end
+
   def direction
-    case params[:sort]
-    when 'date_added_desc'
-      @cars.order(created_at: :desc)
-    when 'date_added_asc'
-      @cars.order(created_at: :asc)
-    when 'price_desc'
-      @cars.order(price: :desc)
-    when 'price_asc'
-      @cars.order(price: :asc)
-    else
-      @cars
-    end
+    sort_orders = {
+      'date_added_desc' => { created_at: :desc },
+      'date_added_asc' => { created_at: :asc },
+      'price_desc' => { price: :desc },
+      'price_asc' => { price: :asc }
+    }
+    @cars = @cars.order(sort_orders[params[:sort]]) if sort_orders.key?(params[:sort])
+    @cars
   end
 
-  def sort_year
-    if params[:year_from].present? && params[:year_to].present?
-      @cars = @cars.where(year: params[:year_from]..params[:year_to])
-    elsif params[:year_from].present?
-      @cars = @cars.where('year >= :year_from', year_from: params[:year_from])
-    elsif params[:year_to].present?
-      @cars = @cars.where('year <= :year_to', year_to: params[:year_to])
-    end
-  end
+  # rubocop:disable all
+  def sort_cars(type, column)
+    from_param = "#{column}_from".to_sym
+    to_param = "#{column}_to".to_sym
 
-  def sort_price
-    if params[:price_from].present? && params[:price_to].present?
-      @cars = @cars.where(price: params[:price_from]..params[:price_to])
-    elsif params[:price_from].present?
-      @cars = @cars.where('price >= :price_from', price_from: params[:price_from])
-    elsif params[:price_to].present?
-      @cars = @cars.where('price <= :price_to', price_to: params[:price_to])
-    end
-  end
-
-  def sort_odometer
-    if params[:odometer_from].present? && params[:odometer_to].present?
-      @cars = @cars.where(odometer: params[:odometer_from]..params[:odometer_to])
-    elsif params[:odometer_from].present?
-      @cars = @cars.where('odometer >= :odometer_from', odometer_from: params[:odometer_from])
-    elsif params[:odometer_to].present?
-      @cars = @cars.where('odometer <= :odometer_to', odometer_to: params[:odometer_to])
+    if params[from_param].present? && params[to_param].present?
+      @cars = @cars.where(type => params[from_param]..params[to_param])
+    elsif params[from_param].present?
+      @cars = @cars.where("#{type} >= :from", from: params[from_param])
+    elsif params[to_param].present?
+      @cars = @cars.where("#{type} <= :to", to: params[to_param])
     end
   end
 
   # rubocop:enable all
-  def filter_by_make_model
-    @cars = @cars.where(make: params[:make]) if params[:make].present?
-    @cars = @cars.where(model: params[:model]) if params[:model].present?
-  end
 end

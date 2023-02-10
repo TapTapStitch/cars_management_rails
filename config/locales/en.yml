@@ -4,3 +4,5 @@ en:
     car_created: "Car was successfully created."
     car_updated: "Car was successfully updated."
     car_destroyed: "Car was successfully destroyed."
+  errors:
+    must_be_string: "only allows letters and numbers"
