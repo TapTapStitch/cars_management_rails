@@ -75,9 +75,7 @@ class CarsController < ApplicationController
   end
 
   def search_params
-    { make: params[:make], model: params[:model], price_from: params[:price_from], price_to: params[:price_to],
-      year_from: params[:year_from], year_to: params[:year_to], odometer_from: params[:odometer_from],
-      odometer_to: params[:odometer_to] }
+    params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from, :odometer_to)
   end
 
   def direction
