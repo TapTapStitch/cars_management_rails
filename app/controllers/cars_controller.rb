@@ -6,8 +6,8 @@ class CarsController < ApplicationController
   http_basic_authenticate_with name: 'admin', password: 'adminpassword', except: %i[index show search user_searches]
 
   def index
-    @request = Request.new(search_params)
-    return unless @request.valid?
+    @search_request = SearchRequest.new(search_params)
+    return unless @search_request.valid?
 
     @cars = Car.all
     sort_and_direction
@@ -27,7 +27,7 @@ class CarsController < ApplicationController
   def edit; end
 
   def user_searches
-    @user_requests = Request.where(user_id: current_user.id)
+    @user_requests = SearchRequest.where(user_id: current_user.id)
   end
 
   def create
@@ -67,11 +67,11 @@ class CarsController < ApplicationController
   end
 
   def save_request
-    existing_request = Request.exists?(request_params)
+    existing_request = SearchRequest.exists?(request_params)
     if existing_request
-      Request.where(request_params).update(updated_at: Time.zone.now)
+      SearchRequest.where(request_params).update(updated_at: Time.zone.now)
     else
-      @request.save
+      @search_request.save
     end
   end
 
@@ -120,9 +120,9 @@ class CarsController < ApplicationController
   end
 
   def request_params
-    { make: @request.make, model: @request.model, price_from: @request.price_from, price_to: @request.price_to,
-      year_from: @request.year_from, year_to: @request.year_to, odometer_from: @request.odometer_from,
-      odometer_to: @request.odometer_to, user_id: @request.user_id }
+    { make: @search_request.make, model: @search_request.model, price_from: @search_request.price_from, price_to: @search_request.price_to,
+      year_from: @search_request.year_from, year_to: @search_request.year_to, odometer_from: @search_request.odometer_from,
+      odometer_to: @search_request.odometer_to, user_id: @search_request.user_id }
   end
 
   # rubocop:enable all

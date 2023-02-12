@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class CreateRequests < ActiveRecord::Migration[7.0]
+class CreateSearchRequests < ActiveRecord::Migration[7.0]
   # rubocop:disable all
   def change
-    create_table :requests do |t|
+    create_table :search_requests do |t|
       t.integer :user_id, null: false
       t.string :make
       t.string :model

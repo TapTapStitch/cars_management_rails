@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_094825) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "requests", force: :cascade do |t|
+  create_table "search_requests", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "make"
     t.string "model"
