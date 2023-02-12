@@ -2,7 +2,8 @@
 
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
-  http_basic_authenticate_with name: 'admin', password: 'adminpassword', except: %i[index show search]
+  before_action :authenticate_user!, only: [:user_searches]
+  http_basic_authenticate_with name: 'admin', password: 'adminpassword', except: %i[index show search user_searches]
 
   def index
     @request = Request.new(search_params)
@@ -13,6 +14,7 @@ class CarsController < ApplicationController
     sort_and_direction
     @number_of_cars = @cars.length.to_s
     @cars = @cars.paginate(page: params[:page], per_page: 5)
+    save_request if user_signed_in?
   end
 
   def search; end
@@ -24,6 +26,10 @@ class CarsController < ApplicationController
   end
 
   def edit; end
+
+  def user_searches
+    @user_requests = Request.where(user_id: current_user.id)
+  end
 
   def create
     @car = Car.new(car_params)
@@ -61,6 +67,15 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
   end
 
+  def save_request
+    existing_request = Request.exists?(request_params)
+    if existing_request
+      Request.where(request_params).update(updated_at: Time.zone.now)
+    else
+      @request.save
+    end
+  end
+
   def sort_and_direction
     @cars = @cars.where(make: params[:make]) if params[:make].present?
     @cars = @cars.where(model: params[:model]) if params[:model].present?
@@ -75,7 +90,12 @@ class CarsController < ApplicationController
   end
 
   def search_params
-    params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from, :odometer_to)
+    if user_signed_in?
+      params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from,
+                    :odometer_to).merge(user_id: current_user.id)
+    else
+      params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from, :odometer_to)
+    end
   end
 
   def direction

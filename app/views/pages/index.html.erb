@@ -7,6 +7,6 @@
   <p><%= link_to "Login", new_user_session_path %></p>
   <p><%= link_to "Sign up", new_user_registration_path %></p>
 <% else %>
-  <p><%= link_to "My searches" %></p>
+  <p><%= link_to "My searches",user_searches_cars_path %></p>
   <p><%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %></p>
 <% end %>
