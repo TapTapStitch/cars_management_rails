@@ -7,14 +7,13 @@ class CarsController < ApplicationController
 
   def index
     @request = Request.new(search_params)
-    @number_of_cars = 'no'
     return unless @request.valid?
 
     @cars = Car.all
     sort_and_direction
     @number_of_cars = @cars.length.to_s
     @cars = @cars.paginate(page: params[:page], per_page: 5)
-    save_request if user_signed_in?
+    save_request if user_signed_in? && @cars.length.positive?
   end
 
   def search; end
@@ -90,12 +89,9 @@ class CarsController < ApplicationController
   end
 
   def search_params
-    if user_signed_in?
-      params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from,
-                    :odometer_to).merge(user_id: current_user.id)
-    else
-      params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from, :odometer_to)
-    end
+    user_id = current_user.id if user_signed_in?
+    params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from,
+                  :odometer_to).merge(user_id:)
   end
 
   def direction
@@ -121,6 +117,12 @@ class CarsController < ApplicationController
     elsif params[to_param].present?
       @cars = @cars.where("#{type} <= :to", to: params[to_param])
     end
+  end
+
+  def request_params
+    { make: @request.make, model: @request.model, price_from: @request.price_from, price_to: @request.price_to,
+      year_from: @request.year_from, year_to: @request.year_to, odometer_from: @request.odometer_from,
+      odometer_to: @request.odometer_to, user_id: @request.user_id }
   end
 
   # rubocop:enable all

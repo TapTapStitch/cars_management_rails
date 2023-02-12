@@ -18,11 +18,5 @@ module CarsHelper
     link_to title, cars_path(hash)
   end
 
-  def request_params
-    { make: @request.make, model: @request.model, price_from: @request.price_from, price_to: @request.price_to,
-      year_from: @request.year_from, year_to: @request.year_to, odometer_from: @request.odometer_from,
-      odometer_to: @request.odometer_to, user_id: @request.user_id }
-  end
-
   # rubocop:enable all
 end
