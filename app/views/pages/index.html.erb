@@ -2,8 +2,11 @@
 
 <p><%= link_to "Help", help_path %></p>
 <p><%= link_to "Cars list", cars_path %></p>
-<p><%= link_to "Search",search_cars_path  %></p>
-<p><%= link_to "Login" %></p>
-<p><%= link_to "Sign up" %></p>
-<p><%= link_to "My searches" %></p>
-<p><%= link_to "Logout"%></p>
+<p><%= link_to "Search", search_cars_path %></p>
+<% unless user_signed_in? %>
+  <p><%= link_to "Login", new_user_session_path %></p>
+  <p><%= link_to "Sign up", new_user_registration_path %></p>
+<% else %>
+  <p><%= link_to "My searches" %></p>
+  <p><%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %></p>
+<% end %>
