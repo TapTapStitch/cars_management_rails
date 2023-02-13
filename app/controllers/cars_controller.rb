@@ -9,8 +9,7 @@ class CarsController < ApplicationController
     @search_request = SearchRequest.new(search_params)
     return unless @search_request.valid?
 
-    @cars = Car.all
-    sort_and_direction
+    @cars = SearchSortCars.new(Car.all, params).call
     @number_of_cars = @cars.length.to_s
     @cars = @cars.paginate(page: params[:page], per_page: 5)
     save_request if user_signed_in? && @cars.length.positive?
@@ -67,21 +66,12 @@ class CarsController < ApplicationController
   end
 
   def save_request
-    existing_request = SearchRequest.exists?(request_params)
+    existing_request = SearchRequest.exists?(request_params(@search_request))
     if existing_request
-      SearchRequest.where(request_params).update(updated_at: Time.zone.now)
+      SearchRequest.where(request_params(@search_request)).update(updated_at: Time.zone.now)
     else
       @search_request.save
     end
-  end
-
-  def sort_and_direction
-    @cars = @cars.where(make: params[:make]) if params[:make].present?
-    @cars = @cars.where(model: params[:model]) if params[:model].present?
-    sort_cars(:year, 'year')
-    sort_cars(:price, 'price')
-    sort_cars(:odometer, 'odometer')
-    @cars = direction
   end
 
   def car_params
@@ -94,36 +84,9 @@ class CarsController < ApplicationController
                   :odometer_to).merge(user_id:)
   end
 
-  def direction
-    sort_orders = {
-      'date_added_desc' => { created_at: :desc },
-      'date_added_asc' => { created_at: :asc },
-      'price_desc' => { price: :desc },
-      'price_asc' => { price: :asc }
-    }
-    @cars = @cars.order(sort_orders[params[:sort]]) if sort_orders.key?(params[:sort])
-    @cars
+  def request_params(request)
+    { make: request.make, model: request.model, price_from: request.price_from, price_to: request.price_to,
+      year_from: request.year_from, year_to: request.year_to, odometer_from: request.odometer_from,
+      odometer_to: request.odometer_to, user_id: request.user_id }
   end
-
-  # rubocop:disable all
-  def sort_cars(type, column)
-    from_param = "#{column}_from".to_sym
-    to_param = "#{column}_to".to_sym
-
-    if params[from_param].present? && params[to_param].present?
-      @cars = @cars.where(type => params[from_param]..params[to_param])
-    elsif params[from_param].present?
-      @cars = @cars.where("#{type} >= :from", from: params[from_param])
-    elsif params[to_param].present?
-      @cars = @cars.where("#{type} <= :to", to: params[to_param])
-    end
-  end
-
-  def request_params
-    { make: @search_request.make, model: @search_request.model, price_from: @search_request.price_from, price_to: @search_request.price_to,
-      year_from: @search_request.year_from, year_to: @search_request.year_to, odometer_from: @search_request.odometer_from,
-      odometer_to: @search_request.odometer_to, user_id: @search_request.user_id }
-  end
-
-  # rubocop:enable all
 end

@@ -1,20 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<% if notice %>
+  <p style="color: green"><%= notice %></p>
+<% end %>
 
 <h3>Cars</h3>
-<p><%= "There are " + @number_of_cars + " cars found." unless  @search_request.errors.any? %></p>
-<% if  @search_request.errors.any? %>
-  <div style="color: red">
-    <h2><%= pluralize( @search_request.errors.count, "error") %> in search request:</h2>
-    <ul>
-      <%  @search_request.errors.each do |error| %>
-        <li><%= error.full_message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-<p><%= link_to "Back to Home page", root_path %></p>
-<p><%= link_to "Search", search_cars_path %></p>
-<% unless  @search_request.errors.any? %>
+<% if @search_request.errors.empty? %>
+  <p><%= "There are " + @number_of_cars + " cars found." %></p>
+  <p><%= link_to "Back to Home page", root_path %></p>
+  <p><%= link_to "Search", search_cars_path %></p>
   <div>
     <p><%= sort_link("date_added_asc", "Sort by Date Added (ascending)") %></p>
     <p><%= sort_link("date_added_desc", "Sort by Date Added (descending)") %></p>
@@ -30,5 +22,17 @@
     <% end %>
   </div>
   <%= will_paginate @cars %>
+<% else %>
+  <div style="color: red">
+    <h2><%= pluralize( @search_request.errors.count, "error") %> in search request:</h2>
+    <ul>
+      <%  @search_request.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <p><%= link_to "Back to Home page", root_path %></p>
+  <p><%= link_to "Search", search_cars_path %></p>
 <% end %>
+
 <div><%= link_to "Add new car", new_car_path %></div>
