@@ -3,7 +3,7 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: [:user_searches]
-  http_basic_authenticate_with name: 'admin', password: 'adminpassword', except: %i[index show search user_searches]
+  http_basic_authenticate_with name: 'admin', password: ENV['ADMIN_PASS'], except: %i[index show search user_searches]
 
   def index
     @search_request = SearchRequest.new(search_params)

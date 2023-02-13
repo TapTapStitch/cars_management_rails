@@ -3,17 +3,26 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: project_development
-  url: <%= ENV['DATABASE_URL'] %>
+  database: cars_management_rails_development
+  username: postgres
+  password: <%= ENV['DATABASE_PASS'] %>
+  host: <%= ENV['DATABASE_URL'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: project_test
-  url: <%= ENV['DATABASE_URL'] %>
+  database: cars_management_rails_test
+  username: postgres
+  password: <%= ENV['DATABASE_PASS'] %>
+  host: <%= ENV['DATABASE_URL'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: project_production
-  url: <%= ENV['DATABASE_URL'] %>
+  database: cars_management_rails_production
+  username: postgres
+  password: <%= ENV['DATABASE_PASS'] %>
+  host: <%= ENV['DATABASE_URL'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
