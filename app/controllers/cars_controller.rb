@@ -27,7 +27,7 @@ class CarsController < ApplicationController
   def edit; end
 
   def user_searches
-    @user_requests = SearchRequest.where(user_id: current_user.id)
+    @user_requests = current_user.search_requests
   end
 
   def create
@@ -67,9 +67,9 @@ class CarsController < ApplicationController
   end
 
   def save_request
-    existing_request = SearchRequest.exists?(request_params(@search_request))
-    if existing_request
-      SearchRequest.where(request_params(@search_request)).update(updated_at: Time.zone.now)
+    @search_request = SearchRequest.find_or_initialize_by(request_params(@search_request))
+    if @search_request.persisted?
+      @search_request.update(updated_at: Time.zone.now)
     else
       @search_request.save
     end
@@ -80,14 +80,12 @@ class CarsController < ApplicationController
   end
 
   def search_params
-    user_id = current_user.id if user_signed_in?
-    params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from,
-                  :odometer_to).merge(user_id:)
+    params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from, :odometer_to)
   end
 
   def request_params(request)
     { make: request.make, model: request.model, price_from: request.price_from, price_to: request.price_to,
       year_from: request.year_from, year_to: request.year_to, odometer_from: request.odometer_from,
-      odometer_to: request.odometer_to, user_id: request.user_id }
+      odometer_to: request.odometer_to, user_id: current_user.id }
   end
 end
