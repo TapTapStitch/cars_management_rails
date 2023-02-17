@@ -133,6 +133,7 @@ GEM
     nokogiri (1.14.1-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.0.1)
     parallel (1.22.1)
     parser (3.2.0.0)
       ast (~> 2.4.1)
@@ -231,7 +232,6 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    will_paginate (3.3.1)
     zeitwerk (2.6.6)
 
 PLATFORMS
@@ -246,6 +246,7 @@ DEPENDENCIES
   dotenv-rails
   importmap-rails
   jbuilder
+  pagy
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
@@ -257,7 +258,6 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
-  will_paginate
 
 RUBY VERSION
    ruby 3.2.0p0

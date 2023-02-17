@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module CarsHelper
+  include Pagy::Frontend
   # rubocop:disable all
   def sort_link(sort_order, title)
     hash = {

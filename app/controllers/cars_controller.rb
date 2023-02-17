@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CarsController < ApplicationController
+  include Pagy::Backend
   before_action :set_car, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: [:user_searches]
   http_basic_authenticate_with name: 'admin', password: ENV.fetch('ADMIN_PASS', nil),
@@ -12,7 +13,7 @@ class CarsController < ApplicationController
 
     @cars = SearchSortCars.new(Car.all, params).call
     @number_of_cars = @cars.length.to_s
-    @cars = @cars.paginate(page: params[:page], per_page: 5)
+    @pagy, @cars = pagy(@cars, items: 5)
     save_request if user_signed_in? && @cars.length.positive?
   end
 
@@ -67,11 +68,11 @@ class CarsController < ApplicationController
   end
 
   def save_request
-    @search_request = SearchRequest.find_or_initialize_by(request_params(@search_request))
-    if @search_request.persisted?
-      @search_request.update(updated_at: Time.zone.now)
+    user_search_request = SearchRequest.find_or_initialize_by(request_params(@search_request))
+    if user_search_request.persisted?
+      user_search_request.update(updated_at: Time.zone.now)
     else
-      @search_request.save
+      user_search_request.save
     end
   end
 

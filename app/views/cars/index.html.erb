@@ -13,15 +13,10 @@
     <p><%= sort_link("price_asc", "Sort by Price (ascending)") %></p>
     <p><%= sort_link("price_desc", "Sort by Price (descending)") %></p>
   </div>
-  <div id="cars">
-    <% @cars.each do |car| %>
-      <%= render car %>
-      <p>
-        <%= link_to "Show this car", car %>
-      </p>
-    <% end %>
+  <div>
+    <%= render partial: "car", collection: @cars %>
   </div>
-  <%= will_paginate @cars %>
+  <%== pagy_nav(@pagy) %>
 <% else %>
   <div style="color: red">
     <h2><%= pluralize( @search_request.errors.count, "error") %> in search request:</h2>
