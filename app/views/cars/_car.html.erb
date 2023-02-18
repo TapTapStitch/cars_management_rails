@@ -1,0 +1,13 @@
+<div class="car">
+  <p>Car id: <%= car.id %></p>
+  <p>Make: <%= car.make %></p>
+  <p>Model: <%= car.model %></p>
+  <p>Year: <%= car.year %></p>
+  <p>Odometer: <%= car.odometer %></p>
+  <p>Price: <%= car.price %></p>
+  <p>Description: <%= car.description %></p>
+  <p>Date added: <%= car.created_at.strftime("%Y-%m-%d") %></p>
+  <% unless params[:controller] == "cars" && params[:action] == "show" %>
+    <p><%= link_to "Show this car", car %></p>
+  <% end %>
+</div>

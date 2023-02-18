@@ -1,0 +1,6 @@
+<h3>Search requests</h3>
+<p><%= link_to "Back to Home page", root_path %></p>
+<%= render partial: "request", collection: @user_requests %>
+<% if @user_requests.empty? %>
+  <p>There are no searches.</p>
+<% end%>

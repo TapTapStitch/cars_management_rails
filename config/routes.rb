@@ -1,6 +1,13 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# frozen_string_literal: true
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+Rails.application.routes.draw do
+  devise_for :users
+  root 'pages#index'
+  get 'help' => 'pages#help'
+  resources :cars do
+    collection do
+      get :search
+      get :user_searches
+    end
+  end
 end
