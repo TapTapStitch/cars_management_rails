@@ -50,8 +50,8 @@
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.2.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.7.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="devise (v4.8.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="dockerfile-rails (v1.0.9, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="docile (v1.4.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v2.8.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv-rails (v2.8.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.12.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
@@ -73,11 +73,10 @@
     <orderEntry type="library" scope="PROVIDED" name="net-pop (v0.1.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-smtp (v0.3.3, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.5.8, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.14.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.14.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="pagy (v6.0.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.22.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="parser (v3.2.0.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="parser (v3.2.1.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v1.4.5, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pry (v0.14.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pry-rails (v0.3.9, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
@@ -91,19 +90,28 @@
     <orderEntry type="library" scope="PROVIDED" name="railties (v7.0.4.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.1.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.0.6, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.6.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.7.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.3.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.1.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.2.5, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.44.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.24.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rubocop-performance (v1.15.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.12.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.12.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.12.3, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-rails (v6.0.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.12.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.45.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.26.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop-performance (v1.16.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-rails (v2.17.4, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.11.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="simplecov (v0.22.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="simplecov-html (v0.12.3, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="simplecov_json_formatter (v0.1.4, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v4.2.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.4.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stimulus-rails (v1.2.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.2.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="timeout (v0.3.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbo-rails (v1.3.3, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v2.0.6, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v2.4.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
@@ -111,7 +119,7 @@
     <orderEntry type="library" scope="PROVIDED" name="web-console (v4.2.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket-driver (v0.7.5, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket-extensions (v0.1.5, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="zeitwerk (v2.6.6, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="zeitwerk (v2.6.7, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />
