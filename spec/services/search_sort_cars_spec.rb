@@ -72,19 +72,35 @@ RSpec.describe SearchSortCars do
       end
     end
 
-    context 'when sorting by date added and price' do
-      it 'returns cars sorted in the specified direction' do
-        car1 = create(:car, created_at: 1.day.ago, price: 5000)
+    context 'when sorting by date added in ascending order' do
+      it 'returns cars in the ascending order of date added' do
+        search = SearchSortCars.new(Car.all, { sort: 'date_added_asc' })
+        sorted_cars = search.call
+        expect(sorted_cars).to eq(Car.all.order(created_at: :asc))
+      end
+    end
 
-        search1 = SearchSortCars.new(Car.all, sort: 'date_added_desc')
-        result1 = search1.call
+    context 'when sorting by date added in descending order' do
+      it 'returns cars in the descending order of date added' do
+        search = SearchSortCars.new(Car.all, { sort: 'date_added_desc' })
+        sorted_cars = search.call
+        expect(sorted_cars).to eq(Car.all.order(created_at: :desc))
+      end
+    end
 
-        expect(result1.first).to eq(car1)
+    context 'when sorting by price in ascending order' do
+      it 'returns cars in the ascending order of price' do
+        search = SearchSortCars.new(Car.all, { sort: 'price_asc' })
+        sorted_cars = search.call
+        expect(sorted_cars).to eq(Car.all.order(price: :asc))
+      end
+    end
 
-        search2 = SearchSortCars.new(Car.all, sort: 'price_asc')
-        result2 = search2.call
-
-        expect(result2.first).to eq(car1)
+    context 'when sorting by price in descending order' do
+      it 'returns cars in the descending order of price' do
+        search = SearchSortCars.new(Car.all, { sort: 'price_desc' })
+        sorted_cars = search.call
+        expect(sorted_cars).to eq(Car.all.order(price: :desc))
       end
     end
   end
