@@ -34,7 +34,7 @@ RSpec.describe SearchSortCars do
         car3 = create(:car, year: 2018, price: 15_000, odometer: 100_000)
 
         search = SearchSortCars.new(Car.all, year_from: 2012, year_to: 2018, price_from: 8000, price_to: 12_000,
-                                    odometer_from: 60_000, odometer_to: 90_000)
+                                             odometer_from: 60_000, odometer_to: 90_000)
         result = search.call
 
         expect(result).to include(car2)
@@ -57,6 +57,18 @@ RSpec.describe SearchSortCars do
 
         expect(result).to include(car2, car3)
         expect(result).not_to include(car1)
+
+        search = SearchSortCars.new(Car.all, year_to: 2015)
+        result = search.call
+
+        expect(result).to include(car1, car2)
+        expect(result).not_to include(car3)
+
+        search = SearchSortCars.new(Car.all, year_from: 2016)
+        result = search.call
+
+        expect(result).to include(car3)
+        expect(result).not_to include(car1, car2)
       end
     end
 
