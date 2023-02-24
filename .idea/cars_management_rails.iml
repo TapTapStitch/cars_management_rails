@@ -50,11 +50,16 @@
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.2.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.7.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="devise (v4.9.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="docile (v1.4.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="dockerfile-rails (v1.1.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v2.8.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv-rails (v2.8.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.12.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_bot (v6.2.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_bot_rails (v6.2.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ffaker (v2.21.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.1.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.12.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="importmap-rails (v1.1.5, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
@@ -75,6 +80,7 @@
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.5.8, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.14.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pagy (v6.0.2, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.22.1, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v3.2.1.0, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v1.4.5, Remote: ruby-3.2.0 (-p0) [gem]" level="application" />
