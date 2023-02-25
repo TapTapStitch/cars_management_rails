@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :search_request do
+    user_id { FFaker::Random.rand(1..100) }
     make { FFaker::Vehicle.make }
     model { FFaker::Vehicle.model }
     price_from { rand(10_000) }
