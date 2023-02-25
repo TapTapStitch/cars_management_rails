@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
+# rubocop:disable Metrics/BlockLength
 
 RSpec.describe Car, type: :model do
   describe 'validations' do
@@ -44,3 +47,4 @@ RSpec.describe Car, type: :model do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

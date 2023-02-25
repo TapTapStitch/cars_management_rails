@@ -1,6 +1,7 @@
-# spec/controllers/cars_controller_spec.rb
+# frozen_string_literal: true
 
 require 'rails_helper'
+# rubocop:disable Metrics/BlockLength
 
 RSpec.describe CarsController, type: :controller do
   describe '#index' do
@@ -48,3 +49,4 @@ RSpec.describe CarsController, type: :controller do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
