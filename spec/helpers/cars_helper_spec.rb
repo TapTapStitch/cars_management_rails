@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe CarsHelper, type: :helper do
   describe '#sort_link' do
     let(:sort_order) { 'make_desc' }
-    let(:title) { FFaker::Lorem.word }
+    let(:title) { 'Some Title' }
     let(:params) do
       {
         make: FFaker::Vehicle.make,
