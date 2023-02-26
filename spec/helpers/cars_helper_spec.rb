@@ -8,8 +8,8 @@ RSpec.describe CarsHelper, type: :helper do
     let(:title) { 'Some Title' }
     let(:params) do
       {
-        make: FFaker::Vehicle.make,
-        model: FFaker::Vehicle.model,
+        make: 'Audi',
+        model: 'A4',
         year_from: FFaker::Vehicle.year,
         year_to: FFaker::Vehicle.year,
         price_from: FFaker::Random.rand(5000..10_000),

@@ -277,7 +277,7 @@ DEPENDENCIES
   bootsnap
   byebug
   debug
-  devise (~> 4.8, >= 4.8.1)
+  devise (>= 4.8.1)
   dockerfile-rails (>= 1.0.0)
   dotenv-rails
   factory_bot_rails
@@ -285,9 +285,9 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   pagy
-  pg (~> 1.1)
+  pg
   pry-rails
-  puma (~> 5.0)
+  puma
   rails
   rails-controller-testing
   rspec-rails
