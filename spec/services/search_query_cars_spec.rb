@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe SearchSortCars do
+RSpec.describe SearchQueryCars do
   let(:cars) { create_list(:car, 5) }
 
   describe '#call' do

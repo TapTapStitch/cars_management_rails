@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SearchSortCars
+class SearchQueryCars
   attr_reader :cars, :params
 
   def initialize(cars, params)

@@ -8,7 +8,7 @@ class CarsController < ApplicationController
     @search_request = SearchRequest.new(search_params)
     return unless @search_request.valid?
 
-    @cars = SearchSortCars.new(Car.all, params).call
+    @cars = SearchQueryCars.new(Car.all, params).call
     @number_of_cars = @cars.length.to_s
     @pagy, @cars = pagy(@cars, items: 5)
     save_request if user_signed_in? && @cars.length.positive?
