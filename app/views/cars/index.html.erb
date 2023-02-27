@@ -4,7 +4,7 @@
 
 <h3>Cars</h3>
 <% if @search_request.errors.empty? %>
-  <p><%= "There are " + @number_of_cars + " cars found." %></p>
+  <p><%= "There are " + @total_cars_count.to_s + " cars found." %></p>
   <p><%= link_to "Back to Home page", root_path %></p>
   <p><%= link_to "Search", search_cars_path %></p>
   <div>
