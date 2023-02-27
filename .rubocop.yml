@@ -54,3 +54,5 @@ RSpec/MultipleExpectations:
   Max: 15
 RSpec/ImplicitExpect:
   EnforcedStyle: should
+RSpec/MultipleMemoizedHelpers:
+  Max: 10

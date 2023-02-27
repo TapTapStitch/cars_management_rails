@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 RSpec.describe CarsController do
+  include Devise::Test::ControllerHelpers
   describe '#index' do
     let(:search_params) { attributes_for(:search_request) }
+    let(:user) { create(:user) }
 
     context 'when valid search params are provided' do
       before do
-        allow(controller).to receive(:user_signed_in?).and_return(true)
+        sign_in user
         get :index, params: search_params
       end
 
@@ -31,6 +33,25 @@ RSpec.describe CarsController do
 
       it 'paginate works' do
         expect(assigns(:pagy)).to be_an_instance_of(Pagy)
+      end
+    end
+
+    context 'when invalid search params are provided' do
+      before do
+        invalid_params = { price_from: -21_312 }
+        get :index, params: invalid_params
+      end
+
+      it 'does not populate @cars with Car objects' do
+        expect(assigns(:cars)).to be_nil
+      end
+
+      it 'does not set @number_of_cars' do
+        expect(assigns(:total_cars_count)).to be_nil
+      end
+
+      it 'does not paginate' do
+        expect(assigns(:pagy)).to be_nil
       end
     end
   end
