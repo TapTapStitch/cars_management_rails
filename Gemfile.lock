@@ -273,7 +273,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bcrypt
+  bcrypt (~> 3.1.7)
   bootsnap
   byebug
   debug
@@ -288,7 +288,7 @@ DEPENDENCIES
   pg
   pry-rails
   puma
-  rails
+  rails (~> 7.0.4, >= 7.0.4.2)
   rails-controller-testing
   rspec-rails
   rubocop-performance
