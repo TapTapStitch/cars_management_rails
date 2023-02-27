@@ -2,10 +2,7 @@
 
 class CarsController < ApplicationController
   include Pagy::Backend
-  before_action :set_car, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: [:user_searches]
-  http_basic_authenticate_with name: 'admin', password: ENV.fetch('ADMIN_PASS', nil),
-                               except: %i[index show search user_searches]
 
   def index
     @search_request = SearchRequest.new(search_params)
@@ -19,53 +16,11 @@ class CarsController < ApplicationController
 
   def search; end
 
-  def show; end
-
-  def new
-    @car = Car.new
-  end
-
-  def edit; end
-
   def user_searches
     @user_requests = current_user.search_requests
   end
 
-  def create
-    @car = Car.new(car_params)
-
-    respond_to do |format|
-      if @car.save
-        format.html { redirect_to car_url(@car), notice: t('success.car_created') }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @car.update(car_params)
-        format.html { redirect_to car_url(@car), notice: t('success.car_updated') }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @car.destroy
-
-    respond_to do |format|
-      format.html { redirect_to cars_url, notice: t('success.car_destroyed') }
-    end
-  end
-
   private
-
-  def set_car
-    @car = Car.find(params[:id])
-  end
 
   def save_request
     user_search_request = SearchRequest.find_or_initialize_by(request_params(@search_request))
