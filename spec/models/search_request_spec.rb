@@ -1,76 +1,29 @@
 # frozen_string_literal: true
 
 RSpec.describe SearchRequest do
-  describe 'validations' do
-    let(:search_request) { build(:search_request) }
+  subject(:search_request) { build(:search_request) }
 
-    it 'is valid with valid attributes' do
-      expect(search_request).to be_valid
-    end
+  # Association tests
+  it { should belong_to(:user).optional }
 
-    it 'is valid without a user' do
-      search_request.user = nil
-      expect(search_request).to be_valid
-    end
+  # Validation tests
+  it { should validate_numericality_of(:price_from).is_greater_than_or_equal_to(0).allow_nil }
+  it { should validate_numericality_of(:price_to).is_greater_than_or_equal_to(0).allow_nil }
+  it { should validate_numericality_of(:year_from).is_greater_than_or_equal_to(0).allow_nil }
+  it { should validate_numericality_of(:year_to).is_greater_than_or_equal_to(0).allow_nil }
+  it { should validate_numericality_of(:odometer_from).is_greater_than_or_equal_to(0).allow_nil }
+  it { should validate_numericality_of(:odometer_to).is_greater_than_or_equal_to(0).allow_nil }
 
-    it 'is valid without a price_from' do
-      search_request.price_from = nil
-      expect(search_request).to be_valid
-    end
-
-    it 'is valid without a price_to' do
-      search_request.price_to = nil
-      expect(search_request).to be_valid
-    end
-
-    it 'is valid without a year_from' do
-      search_request.year_from = nil
-      expect(search_request).to be_valid
-    end
-
-    it 'is valid without a year_to' do
-      search_request.year_to = nil
-      expect(search_request).to be_valid
-    end
-
-    it 'is valid without an odometer_from' do
-      search_request.odometer_from = nil
-      expect(search_request).to be_valid
-    end
-
-    it 'is valid without an odometer_to' do
-      search_request.odometer_to = nil
-      expect(search_request).to be_valid
-    end
-
-    it 'is invalid with a negative price_from' do
-      search_request.price_from = -1
-      expect(search_request).not_to be_valid
-    end
-
-    it 'is invalid with a negative price_to' do
-      search_request.price_to = -1
-      expect(search_request).not_to be_valid
-    end
-
-    it 'is invalid with a negative year_from' do
-      search_request.year_from = -1
-      expect(search_request).not_to be_valid
-    end
-
-    it 'is invalid with a negative year_to' do
-      search_request.year_to = -1
-      expect(search_request).not_to be_valid
-    end
-
-    it 'is invalid with a negative odometer_from' do
-      search_request.odometer_from = -1
-      expect(search_request).not_to be_valid
-    end
-
-    it 'is invalid with a negative odometer_to' do
-      search_request.odometer_to = -1
-      expect(search_request).not_to be_valid
-    end
-  end
+  # Database column tests
+  it { should have_db_column(:user_id).of_type(:integer).with_options(null: false) }
+  it { should have_db_column(:make).of_type(:string) }
+  it { should have_db_column(:model).of_type(:string) }
+  it { should have_db_column(:year_from).of_type(:integer) }
+  it { should have_db_column(:year_to).of_type(:integer) }
+  it { should have_db_column(:odometer_from).of_type(:integer) }
+  it { should have_db_column(:odometer_to).of_type(:integer) }
+  it { should have_db_column(:price_from).of_type(:integer) }
+  it { should have_db_column(:price_to).of_type(:integer) }
+  it { should have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
+  it { should have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
 end

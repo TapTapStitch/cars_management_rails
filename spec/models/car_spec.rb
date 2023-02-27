@@ -1,46 +1,23 @@
 # frozen_string_literal: true
 
 RSpec.describe Car do
-  describe 'validations' do
-    let(:car) { build(:car) }
-
-    it 'is valid with valid attributes' do
-      expect(car).to be_valid
-    end
-
-    it 'is invalid without a make' do
-      car.make = nil
-      expect(car).not_to be_valid
-    end
-
-    it 'is invalid without a model' do
-      car.model = nil
-      expect(car).not_to be_valid
-    end
-
-    it 'is invalid without a year' do
-      car.year = nil
-      expect(car).not_to be_valid
-    end
-
-    it 'is invalid without an odometer reading' do
-      car.odometer = nil
-      expect(car).not_to be_valid
-    end
-
-    it 'is invalid without a price' do
-      car.price = nil
-      expect(car).not_to be_valid
-    end
+  subject(:car) do
+    described_class.new(make: 'Toyota', model: 'Camry', year: 2021, odometer: 10_000, price: 20_000,
+                        description: 'Good condition')
   end
 
-  describe 'factories' do
-    it 'has a valid car factory' do
-      expect(build(:car)).to be_valid
-    end
+  # Validation tests
+  it { should validate_presence_of(:make) }
+  it { should validate_presence_of(:model) }
+  it { should validate_presence_of(:year) }
+  it { should validate_presence_of(:odometer) }
+  it { should validate_presence_of(:price) }
 
-    it 'can create multiple cars using the car factory' do
-      expect(create_list(:car, 3)).to all(be_valid)
-    end
-  end
+  # Database column tests
+  it { should have_db_column(:make).of_type(:string).with_options(null: false) }
+  it { should have_db_column(:model).of_type(:string).with_options(null: false) }
+  it { should have_db_column(:year).of_type(:integer).with_options(null: false) }
+  it { should have_db_column(:odometer).of_type(:integer).with_options(null: false) }
+  it { should have_db_column(:price).of_type(:integer).with_options(null: false) }
+  it { should have_db_column(:description).of_type(:text) }
 end
