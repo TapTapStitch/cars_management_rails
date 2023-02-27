@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
-
-RSpec.describe Car, type: :model do
+RSpec.describe Car do
   describe 'validations' do
     let(:car) { build(:car) }
 
@@ -12,27 +10,27 @@ RSpec.describe Car, type: :model do
 
     it 'is invalid without a make' do
       car.make = nil
-      expect(car).to_not be_valid
+      expect(car).not_to be_valid
     end
 
     it 'is invalid without a model' do
       car.model = nil
-      expect(car).to_not be_valid
+      expect(car).not_to be_valid
     end
 
     it 'is invalid without a year' do
       car.year = nil
-      expect(car).to_not be_valid
+      expect(car).not_to be_valid
     end
 
     it 'is invalid without an odometer reading' do
       car.odometer = nil
-      expect(car).to_not be_valid
+      expect(car).not_to be_valid
     end
 
     it 'is invalid without a price' do
       car.price = nil
-      expect(car).to_not be_valid
+      expect(car).not_to be_valid
     end
   end
 
@@ -46,4 +44,3 @@ RSpec.describe Car, type: :model do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

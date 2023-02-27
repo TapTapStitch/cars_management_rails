@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
-RSpec.describe CarsHelper, type: :helper do
+RSpec.describe CarsHelper do
   describe '#sort_link' do
+    subject(:sort_link) { helper.sort_link(sort_order, title) }
+
     let(:sort_order) { 'make_desc' }
     let(:title) { 'Some Title' }
     let(:params) do
@@ -18,8 +19,6 @@ RSpec.describe CarsHelper, type: :helper do
         page: FFaker::Random.rand(1..10)
       }
     end
-
-    subject(:sort_link) { helper.sort_link(sort_order, title) }
 
     before do
       allow(helper).to receive(:params).and_return(params)
@@ -39,4 +38,3 @@ RSpec.describe CarsHelper, type: :helper do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

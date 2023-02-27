@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
-
-RSpec.describe CarsController, type: :controller do
+RSpec.describe CarsController do
   describe '#index' do
-    let(:search_params) { FactoryBot.attributes_for(:search_request) }
+    let(:search_params) { attributes_for(:search_request) }
 
     context 'when valid search params are provided' do
       before do
@@ -48,4 +46,3 @@ RSpec.describe CarsController, type: :controller do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
-
-RSpec.describe SearchRequest, type: :model do
+RSpec.describe SearchRequest do
   describe 'validations' do
     let(:search_request) { build(:search_request) }
 
@@ -47,32 +45,32 @@ RSpec.describe SearchRequest, type: :model do
 
     it 'is invalid with a negative price_from' do
       search_request.price_from = -1
-      expect(search_request).to_not be_valid
+      expect(search_request).not_to be_valid
     end
 
     it 'is invalid with a negative price_to' do
       search_request.price_to = -1
-      expect(search_request).to_not be_valid
+      expect(search_request).not_to be_valid
     end
 
     it 'is invalid with a negative year_from' do
       search_request.year_from = -1
-      expect(search_request).to_not be_valid
+      expect(search_request).not_to be_valid
     end
 
     it 'is invalid with a negative year_to' do
       search_request.year_to = -1
-      expect(search_request).to_not be_valid
+      expect(search_request).not_to be_valid
     end
 
     it 'is invalid with a negative odometer_from' do
       search_request.odometer_from = -1
-      expect(search_request).to_not be_valid
+      expect(search_request).not_to be_valid
     end
 
     it 'is invalid with a negative odometer_to' do
       search_request.odometer_to = -1
-      expect(search_request).to_not be_valid
+      expect(search_request).not_to be_valid
     end
   end
 
@@ -86,4 +84,3 @@ RSpec.describe SearchRequest, type: :model do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength
