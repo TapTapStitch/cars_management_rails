@@ -26,7 +26,7 @@ RSpec.describe CarsController do
       end
 
       it 'sets @number_of_cars to a string representation of the number of cars' do
-        expect(assigns(:number_of_cars)).to eq(assigns(:cars).length.to_s)
+        expect(assigns(:total_cars_count)).to eq(assigns(:cars).length)
       end
 
       it 'paginate works' do

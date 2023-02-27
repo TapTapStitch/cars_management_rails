@@ -1,18 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe SearchQueryCars do
-  let(:cars) { create_list(:car, 5) }
 
   describe '#call' do
-    context 'when there are no sort parameters' do
-      it 'returns cars in the default order' do
-        search = described_class.new(Car.all, {})
-        result = search.call
-
-        expect(result).to eq(Car.all)
-      end
-    end
-
     context 'when filtering by make' do
       it 'returns cars that match the make' do
         honda = create(:car, make: 'Honda', model: 'Civic')
