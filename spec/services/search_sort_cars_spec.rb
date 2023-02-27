@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # rubocop:disable Metrics/BlockLength
 RSpec.describe SearchSortCars do
   let(:cars) { create_list(:car, 5) }

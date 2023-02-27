@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # rubocop:disable Metrics/BlockLength
 
 RSpec.describe SearchRequest, type: :model do
