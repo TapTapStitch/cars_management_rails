@@ -31,10 +31,6 @@ class CarsController < ApplicationController
     end
   end
 
-  def car_params
-    params.require(:car).permit(:make, :model, :year, :odometer, :price, :description)
-  end
-
   def search_params
     params.permit(:make, :model, :price_from, :price_to, :year_from, :year_to, :odometer_from, :odometer_to)
   end

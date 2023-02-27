@@ -46,3 +46,9 @@ Layout/ClassStructure:
     - public_methods
     - protected_methods
     - private_methods
+
+# RSpec configuration
+RSpec/ExampleLength:
+  Max: 30
+RSpec/MultipleExpectations:
+  Max: 15

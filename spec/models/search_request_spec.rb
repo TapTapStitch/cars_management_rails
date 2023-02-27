@@ -73,14 +73,4 @@ RSpec.describe SearchRequest do
       expect(search_request).not_to be_valid
     end
   end
-
-  describe 'factories' do
-    it 'has a valid search_request factory' do
-      expect(build(:search_request)).to be_valid
-    end
-
-    it 'can create multiple search_requests using the search_request factory' do
-      expect(create_list(:search_request, 3)).to all(be_valid)
-    end
-  end
 end

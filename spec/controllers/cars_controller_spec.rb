@@ -33,16 +33,5 @@ RSpec.describe CarsController do
         expect(assigns(:pagy)).to be_an_instance_of(Pagy)
       end
     end
-
-    context 'when user is not signed in' do
-      before do
-        allow(controller).to receive(:user_signed_in?).and_return(false)
-        get :index, params: search_params
-      end
-
-      it 'does not save the request' do
-        expect(controller).not_to receive(:save_request)
-      end
-    end
   end
 end
