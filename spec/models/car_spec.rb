@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe Car do
-  subject(:car) do
-    described_class.new(make: 'Toyota', model: 'Camry', year: 2021, odometer: 10_000, price: 20_000,
-                        description: 'Good condition')
-  end
-
   # Validation tests
   it { should validate_presence_of(:make) }
   it { should validate_presence_of(:model) }

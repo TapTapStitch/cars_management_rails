@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe SearchRequest do
-  subject(:search_request) { build(:search_request) }
-
   # Association tests
   it { should belong_to(:user).optional }
 
