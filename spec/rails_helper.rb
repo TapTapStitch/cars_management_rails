@@ -14,7 +14,10 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+Dir["#{Dir.pwd}/spec/support/**/*.rb"].each { |f| require f }
+
 RSpec.configure do |config|
+  config.disable_monkey_patching!
   config.fixture_path = Rails.root.join('/spec/fixtures')
 
   config.include FactoryBot::Syntax::Methods
@@ -27,10 +30,4 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
-end
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
 end
