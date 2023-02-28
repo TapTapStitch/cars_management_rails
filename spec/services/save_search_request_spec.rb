@@ -30,10 +30,7 @@ RSpec.describe SaveSearchRequest, type: :service do
       end
 
       it 'updates the updated_at timestamp' do
-        expect do
-          save_search_request
-          existing_search_request.reload
-        end.to change(existing_search_request, :updated_at)
+        expect { save_search_request }.to(change { existing_search_request.reload.updated_at })
       end
     end
   end
