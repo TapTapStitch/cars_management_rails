@@ -1,6 +1,7 @@
 require:
   - rubocop-rails
   - rubocop-performance
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
@@ -45,3 +46,16 @@ Layout/ClassStructure:
     - public_methods
     - protected_methods
     - private_methods
+
+# RSpec configuration
+RSpec/ExampleLength:
+  Max: 30
+RSpec/MultipleExpectations:
+  Max: 15
+RSpec/ImplicitExpect:
+  EnforcedStyle: should
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+RSpec/NestedGroups:
+  Max: 5
+
