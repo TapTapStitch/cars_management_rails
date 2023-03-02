@@ -1,31 +1,14 @@
-<% if notice %>
-  <p style="color: green"><%= notice %></p>
-<% end %>
-
 <h3>Cars</h3>
-<% if @search_request.errors.empty? %>
-  <p><%= "There are " + @total_cars_count.to_s + " cars found." %></p>
-  <p><%= link_to "Back to Home page", root_path %></p>
-  <p><%= link_to "Search", search_cars_path %></p>
-  <div>
-    <p><%= sort_link("date_added_asc", "Sort by Date Added (ascending)") %></p>
-    <p><%= sort_link("date_added_desc", "Sort by Date Added (descending)") %></p>
-    <p><%= sort_link("price_asc", "Sort by Price (ascending)") %></p>
-    <p><%= sort_link("price_desc", "Sort by Price (descending)") %></p>
-  </div>
-  <div>
-    <%= render partial: "car", collection: @cars %>
-  </div>
-  <%== pagy_nav(@pagy) %>
-<% else %>
-  <div style="color: red">
-    <h2><%= pluralize( @search_request.errors.count, "error") %> in search request:</h2>
-    <ul>
-      <%  @search_request.errors.each do |error| %>
-        <li><%= error.full_message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <p><%= link_to "Back to Home page", root_path %></p>
-  <p><%= link_to "Search", search_cars_path %></p>
-<% end %>
+<p><%= "There are " + @total_cars_count.to_s + " cars found." %></p>
+<p><%= link_to "Back to Home page", root_path %></p>
+<p><%= link_to "Search", search_cars_path %></p>
+<div>
+  <p><%= sort_link("date_added_asc", "Sort by Date Added (ascending)") %></p>
+  <p><%= sort_link("date_added_desc", "Sort by Date Added (descending)") %></p>
+  <p><%= sort_link("price_asc", "Sort by Price (ascending)") %></p>
+  <p><%= sort_link("price_desc", "Sort by Price (descending)") %></p>
+</div>
+<div>
+  <%= render partial: "car", collection: @cars %>
+</div>
+<%== pagy_nav(@pagy) %>
