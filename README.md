@@ -3,7 +3,7 @@
 <p>This is a basic Ruby on Rails app with Ruby version 3.2.0. This README.md file provides instructions on how to set up and run the app.</p>
 This app was deployed to FLY.io link to app is
 
-`https://cars-management.fly.dev/`
+[Here](https://cars-management.fly.dev/)
 
 ## Requirements
 
