@@ -31,50 +31,50 @@ RSpec.describe SearchQueryCars do
     end
 
     context 'when filtering by year' do
-      let(:car1) { create(:car, year: 2010, price: 5000, odometer: 50_000) }
-      let(:car2) { create(:car, year: 2015, price: 10_000, odometer: 75_000) }
-      let(:car3) { create(:car, year: 2018, price: 15_000, odometer: 100_000) }
+      let(:first_car) { create(:car, year: 2010, price: 5000, odometer: 50_000) }
+      let(:second_car) { create(:car, year: 2015, price: 10_000, odometer: 75_000) }
+      let(:third_car) { create(:car, year: 2018, price: 15_000, odometer: 100_000) }
       let(:search_params) { { year_to: 2015 } }
 
       it 'returns cars that match the year filter parameters' do
-        expect(search.call).to include(car1, car2)
-        expect(search.call).not_to include(car3)
+        expect(search.call).to include(first_car, second_car)
+        expect(search.call).not_to include(third_car)
       end
 
       context 'when filtering by year from' do
-        let(:car1) { create(:car, year: 2010, price: 5000, odometer: 50_000) }
-        let(:car2) { create(:car, year: 2015, price: 10_000, odometer: 75_000) }
-        let(:car3) { create(:car, year: 2018, price: 15_000, odometer: 100_000) }
+        let(:first_car) { create(:car, year: 2010, price: 5000, odometer: 50_000) }
+        let(:second_car) { create(:car, year: 2015, price: 10_000, odometer: 75_000) }
+        let(:third_car) { create(:car, year: 2018, price: 15_000, odometer: 100_000) }
         let(:search_params) { { year_from: 2016 } }
 
         it 'returns cars that match the year filter parameters' do
-          expect(search.call).to include(car3)
-          expect(search.call).not_to include(car1, car2)
+          expect(search.call).to include(third_car)
+          expect(search.call).not_to include(first_car, second_car)
         end
       end
     end
 
     context 'when filtering by price' do
-      let(:car1) { create(:car, year: 2010, price: 5000, odometer: 50_000) }
-      let(:car2) { create(:car, year: 2015, price: 10_000, odometer: 75_000) }
-      let(:car3) { create(:car, year: 2018, price: 15_000, odometer: 100_000) }
+      let(:first_car) { create(:car, year: 2010, price: 5000, odometer: 50_000) }
+      let(:second_car) { create(:car, year: 2015, price: 10_000, odometer: 75_000) }
+      let(:third_car) { create(:car, year: 2018, price: 15_000, odometer: 100_000) }
       let(:search_params) { { price_from: 6000, price_to: 12_000 } }
 
       it 'returns cars that match the price filter parameters' do
-        expect(search.call).to include(car2)
-        expect(search.call).not_to include(car1, car3)
+        expect(search.call).to include(second_car)
+        expect(search.call).not_to include(first_car, third_car)
       end
     end
 
     context 'when filtering by odometer' do
-      let(:car1) { create(:car, year: 2010, price: 5000, odometer: 50_000) }
-      let(:car2) { create(:car, year: 2015, price: 10_000, odometer: 75_000) }
-      let(:car3) { create(:car, year: 2018, price: 15_000, odometer: 100_000) }
+      let(:first_car) { create(:car, year: 2010, price: 5000, odometer: 50_000) }
+      let(:second_car) { create(:car, year: 2015, price: 10_000, odometer: 75_000) }
+      let(:third_car) { create(:car, year: 2018, price: 15_000, odometer: 100_000) }
       let(:search_params) { { odometer_from: 70_000, odometer_to: 110_000 } }
 
       it 'returns cars that match the odometer filter parameters' do
-        expect(search.call).to include(car2, car3)
-        expect(search.call).not_to include(car1)
+        expect(search.call).to include(second_car, third_car)
+        expect(search.call).not_to include(first_car)
       end
     end
 

@@ -5,20 +5,20 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.0'
 
-gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
+gem 'bcrypt', '~> 3.1.7'
+gem 'bootsnap', require: false
 gem 'devise', '>= 4.8.1'
-gem 'sprockets-rails'
+gem 'dockerfile-rails', '>= 1.0.0', group: :development
+gem 'importmap-rails'
+gem 'jbuilder'
+gem 'pagy'
 gem 'pg'
 gem 'puma'
-gem 'importmap-rails'
-gem 'turbo-rails'
+gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
+gem 'sprockets-rails'
 gem 'stimulus-rails'
-gem 'jbuilder'
-gem 'bcrypt', '~> 3.1.7'
+gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'bootsnap', require: false
-gem 'pagy'
-gem 'dockerfile-rails', '>= 1.0.0', group: :development
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -27,15 +27,18 @@ group :development, :test do
   gem 'ffaker'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-  gem 'rubocop-rspec'
-  gem 'simplecov', require: false
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'simplecov', require: false
 end
 
 group :development do
-  gem 'web-console'
-  gem 'pry-rails'
   gem 'byebug'
-  gem 'rubocop-rails'
-  gem 'rubocop-performance'
+  gem 'pry-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-md', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rake', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'web-console'
 end
