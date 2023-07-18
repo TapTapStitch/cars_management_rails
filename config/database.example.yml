@@ -1,28 +1,20 @@
-#database example
-
-development:
+rails default: &default
   adapter: postgresql
   encoding: unicode
-  database: cars_management_rails_development
+  host: localhost
+  port: 5432
+  pool: 5
   username: postgres
-  password: <%= ENV['DATABASE_PASS'] %>
-  host: <%= ENV['DATABASE_URL'] %>
-  port: <%= ENV['DATABASE_PORT'] %>
+  password: postgres
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: cars_management_rails_test
-  username: postgres
-  password: <%= ENV['DATABASE_PASS'] %>
-  host: <%= ENV['DATABASE_URL'] %>
-  port: <%= ENV['DATABASE_PORT'] %>
+
+development:
+  <<: *default
+  database: cars_management_rails_development
 
 production:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: cars_management_rails_production
-  username: postgres
-  password: <%= ENV['DATABASE_PASS'] %>
-  host: <%= ENV['DATABASE_URL'] %>
-  port: <%= ENV['DATABASE_PORT'] %>
