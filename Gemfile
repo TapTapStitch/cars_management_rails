@@ -5,16 +5,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.0'
 
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.12'
 gem 'bootsnap', require: false
-gem 'devise', '>= 4.8.1'
-gem 'dockerfile-rails', '>= 1.0.0', group: :development
+gem 'devise', '>= 4.9.2'
+gem 'dockerfile-rails', '>= 1.5.3', group: :development
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pagy'
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
+gem 'rails', '~> 7.0.7', '>= 7.0.7'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
