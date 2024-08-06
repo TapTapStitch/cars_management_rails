@@ -1,6 +1,6 @@
 # README
 
-<p>This is a basic Ruby on Rails app with Ruby version 3.3.0. This README.md file provides instructions on how to set up and run the app.</p>
+<p>This is a basic Ruby on Rails app with Ruby version 3.3.4. This README.md file provides instructions on how to set up and run the app.</p>
 This app was deployed to FLY.io link to app is
 
 [Here](https://cars-management.fly.dev/)
@@ -9,8 +9,8 @@ This app was deployed to FLY.io link to app is
 
 Make sure you have the following installed on your system:
 
-* Ruby version 3.3.0
-* Ruby on Rails version 7.0.4.2
+* Ruby version 3.3.4
+* Ruby on Rails version 7.1.3.4
 * Bundler version 2.4.5
 * PostgreSQL version 15
 

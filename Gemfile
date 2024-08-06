@@ -3,18 +3,18 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.0'
+ruby '3.3.4'
 
 gem 'bcrypt'
 gem 'bootsnap', require: false
-gem 'devise', '>= 4.9.2'
-gem 'dockerfile-rails', '>= 1.5.3', group: :development
+gem 'devise', '>= 4.9.4'
+gem 'dockerfile-rails', '>= 1.6.17', group: :development
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pagy'
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 7.1', '>= 7.1.3.2'
+gem 'rails', '>= 7.1.3.4'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
@@ -27,7 +27,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-  gem 'shoulda-matchers', '~> 5.0'
+  gem 'shoulda-matchers', '~> 6.2.0'
   gem 'simplecov', require: false
 end
 
